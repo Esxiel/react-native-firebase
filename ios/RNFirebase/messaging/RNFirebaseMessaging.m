@@ -41,7 +41,7 @@ RCT_EXPORT_MODULE()
     [FIRMessaging messaging].delegate = self;
 
     // Establish Firebase managed data channel
-    [FIRMessaging messaging].shouldEstablishDirectChannel = YES;
+    [FIRMessaging messaging].shouldEstablishDirectChannel = NO;
 
     // Set static instance for use from AppDelegate
     theRNFirebaseMessaging = self;

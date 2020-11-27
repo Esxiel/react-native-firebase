@@ -110,7 +110,10 @@ RCT_EXPORT_METHOD(complete:(NSString*)handlerKey fetchResult:(UIBackgroundFetchR
             void(^completionHandler)(void) = completionHandlers[handlerKey];
             if (completionHandler != nil) {
                 completionHandlers[handlerKey] = nil;
-                completionHandler();
+                // was failiing when pressing background notif on lockscreen on ios 14. see  https://github.com/notifee/react-native-notifee/issues/166
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completionHandler();
+                });
             }
         }
     }
